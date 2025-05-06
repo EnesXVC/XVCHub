@@ -4,68 +4,72 @@
   <meta charset="UTF-8">
   <title>XVC Hub</title>
   <style>
-    body {
+    * {
       margin: 0;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background: black;
-      color: white;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    body {
+      height: 100vh;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
       text-align: center;
-      z-index: 2;
+      z-index: 1;
     }
 
     h1 {
       font-size: 48px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     button {
-      background: #1e1e1e;
-      color: #fff;
-      border: 2px solid #fff;
       padding: 15px 30px;
       font-size: 20px;
-      border-radius: 10px;
+      background-color: #111;
+      color: white;
+      border: 2px solid white;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
     }
 
     button:hover {
-      background: #333;
-      transform: scale(1.05);
+      background-color: white;
+      color: black;
     }
 
     .background {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
       pointer-events: none;
     }
 
     .circle {
       position: absolute;
-      width: 10px;
-      height: 10px;
-      background: white;
       border-radius: 50%;
+      background-color: white;
+      opacity: 0.1;
       animation: float 10s linear infinite;
-      opacity: 0.2;
     }
 
     @keyframes float {
       0% {
         transform: translateY(100vh);
-        opacity: 0.2;
+        opacity: 0.1;
       }
       100% {
         transform: translateY(-10vh);
@@ -75,19 +79,15 @@
   </style>
 </head>
 <body>
-  <div class="center">
+  <div class="container">
     <h1>XVC Hub</h1>
     <button onclick="copyScript()">📋 Scripti Kopyala</button>
   </div>
 
   <div class="background" id="bg"></div>
 
-  <audio autoplay loop>
-    <source src="https://files.catbox.moe/twumx7.mp3" type="audio/mpeg">
-  </audio>
-
   <script>
-    const script = `loadstring(game:HttpGet("https://xvc-hub.vercel.app/api"))()`;
+    const script = `loadstring(game:HttpGet("https://xvc-hub.vercel.app/"))()`;
 
     function copyScript() {
       navigator.clipboard.writeText(script).then(() => {
@@ -97,11 +97,13 @@
       });
     }
 
-    // Arka plan efektleri
+    // Arka plan efektleri (hareketli beyaz noktalar)
     const bg = document.getElementById("bg");
     for (let i = 0; i < 100; i++) {
       const c = document.createElement("div");
       c.classList.add("circle");
+      c.style.width = Math.random() * 8 + 2 + "px";
+      c.style.height = c.style.width;
       c.style.left = Math.random() * 100 + "vw";
       c.style.top = Math.random() * 100 + "vh";
       c.style.animationDuration = (Math.random() * 10 + 5) + "s";
