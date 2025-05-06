@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XVC Hub</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: black;
+      color: white;
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    button {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .circle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      animation: float 10s linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+    <h1>XVC Hub</h1>
+    <button onclick="copyScript()"Copy Script</button>
+  </div>
+
+  <div class="background" id="bg"></div>
+
+  <audio autoplay loop hidden>
+    <source src="https://files.catbox.moe/twumx7.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const script = `loadstring(game:HttpGet("https://xvc-hub.vercel.app/"))()`;
+    function copyScript() {
+      navigator.clipboard.writeText(script).then(() => {
+        alert("Script kopyalandı!");
+      });
+    }
+
+    // Arka plan animasyonu
+    const bg = document.getElementById("bg");
+    for (let i = 0; i < 100; i++) {
+      const c = document.createElement("div");
+      c.classList.add("circle");
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.top = Math.random() * 100 + "vh";
+      c.style.animationDuration = (Math.random() * 10 + 5) + "s";
+      bg.appendChild(c);
+    }
+  </script>
+</body>
+</html>
