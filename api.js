@@ -7,6 +7,6 @@ export default async function handler(req, res) {
   if (isRoblox) {
     res.status(200).send(`print("Gizli script çalıştı!")`);
   } else {
-    res.status(404).send("404 Not Found");
+    res.status(404).send("baba");
   }
 }
