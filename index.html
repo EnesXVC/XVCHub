@@ -81,7 +81,7 @@
 <body>
   <div class="container">
     <h1>XVC Hub</h1>
-    <button onclick="copyScript()">📋 Scripti Kopyala</button>
+    <button onclick="copyScript()">Copy Script</button>
   </div>
 
   <div class="background" id="bg"></div>
@@ -91,9 +91,9 @@
 
     function copyScript() {
       navigator.clipboard.writeText(script).then(() => {
-        alert("✅ Script kopyalandı!");
+        alert("Script Copied.");
       }).catch(() => {
-        alert("❌ Kopyalama başarısız.");
+        alert("error.");
       });
     }
 
