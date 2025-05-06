@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <title>XVC Hub</title>
@@ -21,19 +21,25 @@
       z-index: 2;
     }
 
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
     button {
-      background: #fff;
-      color: #000;
-      border: none;
+      background: #1e1e1e;
+      color: #fff;
+      border: 2px solid #fff;
       padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 8px;
+      font-size: 20px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s;
     }
 
     button:hover {
-      background: #ddd;
+      background: #333;
+      transform: scale(1.05);
     }
 
     .background {
@@ -71,24 +77,27 @@
 <body>
   <div class="center">
     <h1>XVC Hub</h1>
-    <button onclick="copyScript()"Copy Script</button>
+    <button onclick="copyScript()">📋 Scripti Kopyala</button>
   </div>
 
   <div class="background" id="bg"></div>
 
-  <audio autoplay loop hidden>
+  <audio autoplay loop>
     <source src="https://files.catbox.moe/twumx7.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    const script = `loadstring(game:HttpGet("https://xvc-hub.vercel.app/"))()`;
+    const script = `loadstring(game:HttpGet("https://xvc-hub.vercel.app/api"))()`;
+
     function copyScript() {
       navigator.clipboard.writeText(script).then(() => {
-        alert("Script kopyalandı!");
+        alert("✅ Script kopyalandı!");
+      }).catch(() => {
+        alert("❌ Kopyalama başarısız.");
       });
     }
 
-    // Arka plan animasyonu
+    // Arka plan efektleri
     const bg = document.getElementById("bg");
     for (let i = 0; i < 100; i++) {
       const c = document.createElement("div");
