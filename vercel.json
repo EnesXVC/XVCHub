@@ -2,11 +2,7 @@
   "builds": [
     {
       "src": "api.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "index.html",
-      "use": "@vercel/static"
+      "use": "@vercel/node@2"
     }
   ],
   "routes": [
